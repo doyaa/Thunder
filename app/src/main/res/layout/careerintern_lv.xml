@@ -47,7 +47,7 @@
             android:layout_marginLeft="10dp"
             android:layout_marginRight="50dp"
             android:layout_weight="1"
-            android:text="활동기간"
+            android:text="수료날짜"
             android:textColor="#000000"
             android:textSize="24sp" />
 
@@ -57,7 +57,7 @@
             android:layout_height="48dp"
             android:layout_weight="1"
             android:ems="10"
-            android:hint="활동기간을 입력하세요"
+            android:hint="수료날짜를 입력하세요"
             android:inputType="textPersonName" />
 
         <ImageButton
