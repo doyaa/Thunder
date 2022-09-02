@@ -35,6 +35,7 @@ public class DatePickerFragment extends DialogFragment
 
     @Override
     public void onDateSet(DatePicker datePicker, int year, int month, int day) {
+        //CareerCertMain에도 적용하고 싶음.
         CareerAwards_Main activity = (CareerAwards_Main)getActivity();
         activity.processDatePickerResult(year,month,day);
     }
