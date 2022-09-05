@@ -3,6 +3,7 @@ package com.example.napo01;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.DialogFragment;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -52,6 +53,17 @@ public class CareerAwards_Main extends AppCompatActivity {
         });
 
     }
+
+    //갤러리 창 여는 코드
+//    public void openGallery() {
+//        Intent intent = new Intent();
+//        intent.setType("image/*");
+//        intent.setAction(intent.ACTION_GET_CONTENT);
+//
+//        startActivityForResult(intent, 101);
+//
+//    }
+
     public void showDatePicker(View view) {
         DialogFragment newFragment = new DatePickerFragment(this, "CareerAwards");
         newFragment.show(getSupportFragmentManager(),"datePicker");

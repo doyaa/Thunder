@@ -10,6 +10,7 @@ import android.widget.TextView;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.DialogFragment;
 
 public class CareerLang_Main extends AppCompatActivity {
     private ListView careerLang_List, listview;
@@ -48,6 +49,23 @@ public class CareerLang_Main extends AppCompatActivity {
                 careerLangAdapter.addItems(kind,test,score,date);
           }
         });
+
+    }
+
+    public void showDatePicker(View view) {
+        DialogFragment newFragment = new DatePickerFragment(this, "CareerLang");
+        newFragment.show(getSupportFragmentManager(),"datePicker");
+    }
+
+    public void processDatePickerResult(int year, int month, int day){
+        String month_string = Integer.toString(month+1);
+        String day_string = Integer.toString(day);
+        String year_string = Integer.toString(year);
+        String dateMessage = (year_string + "년 " + month_string + "월 " + day_string + "일");
+
+        EditText lang_date = findViewById(R.id.lang_date);
+        lang_date.setText(dateMessage);
+
 
     }
 
