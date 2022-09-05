@@ -129,23 +129,17 @@
             android:gravity="center"
             android:orientation="vertical">
 
-            <TextView
-                android:id="@+id/textView49"
-                android:layout_width="wrap_content"
+            <Button
+                android:id="@+id/btn_award"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="0"
-                android:fontFamily="@font/dalseo"
-                android:text="증명서류를 첨부하세요(예 : 상장)"
-                android:textColor="#263BF4"
-                android:textSize="18sp" />
+                android:text="사진 가져오기" />
 
-            <ImageButton
-                android:id="@+id/imageButton"
-                android:layout_width="80dp"
-                android:layout_height="71dp"
-                android:contentDescription="증명서류를 첨부하세요"
-                app:srcCompat="@android:drawable/ic_menu_add" />
-
+            <ImageView
+                android:id="@+id/award_img"
+                android:layout_width="match_parent"
+                android:layout_height="149dp"
+                app:srcCompat="@android:drawable/ic_menu_gallery" />
         </LinearLayout>
 
 

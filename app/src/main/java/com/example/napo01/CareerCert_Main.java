@@ -13,12 +13,29 @@ import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.DialogFragment;
 
+import com.android.volley.AuthFailureError;
+import com.android.volley.NetworkResponse;
+import com.android.volley.ParseError;
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.HttpHeaderParser;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
+
+import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 public class CareerCert_Main extends AppCompatActivity {
     private ListView careercert_List;
     private CareerCertAdapter careerCertAdapter = new CareerCertAdapter();
     private TextView btn_certPlus;
+
+    private RequestQueue queue;
+    private StringRequest stringRequest;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,15 +64,70 @@ public class CareerCert_Main extends AppCompatActivity {
                 careercert_List.setAdapter(careerCertAdapter);
                 careerCertAdapter.notifyDataSetChanged();
 
-                // 자격증 값 받아오기 
+                // 자격증 값 받아오기
                 ArrayList<CareerCertVO> list = careerCertAdapter.getCertItems();
                 for(int i = 0; i < list.size(); i++){
                     Log.v("ttttt" , list.get(i).getCertName());
                     Log.v("ttttt" , list.get(i).getCertInst());
                     Log.v("ttttt" , list.get(i).getCertDate());
                 }
+
+                sendRequest();
             }
+
+
         });
+    }
+
+    public void sendRequest(){
+
+        queue = Volley.newRequestQueue(this);
+        String url = "http://192.168.21.173:5001/join";
+        stringRequest = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
+
+            @Override
+            public void onResponse(String response) {
+                Log.v("resultValue",response);
+            }
+        }, new Response.ErrorListener() {
+
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                error.printStackTrace();
+            }
+        }) {
+            @Override
+            protected Response<String> parseNetworkResponse(NetworkResponse response) {
+                try {
+                    String utf8String = new String(response.data, "UTF-8");
+                    return Response.success(utf8String, HttpHeaderParser.parseCacheHeaders(response));
+                } catch (UnsupportedEncodingException e) {
+
+                    return Response.error(new ParseError(e));
+                } catch (Exception e) {
+
+                    return Response.error(new ParseError(e));
+                }
+            }
+
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
+                Map<String, String> params = new HashMap<String, String>();
+
+//
+//                        params.put("id",id);
+//                        params.put("pw",pw);
+//                        params.put("name",name);
+//                        params.put("phone",phone);
+
+                return params;
+
+            }
+        };
+
+        String TAG = "duud";
+        stringRequest.setTag(TAG);
+        queue.add(stringRequest);
     }
 
     public void showDatePicker(View view) {

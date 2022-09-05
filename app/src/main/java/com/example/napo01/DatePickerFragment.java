@@ -54,7 +54,10 @@ public class DatePickerFragment extends DialogFragment
         } else if (activty_name.equals("CareerLang")) {
 
             ((CareerLang_Main) context).processDatePickerResult(year, month, day);
+        }else if (activty_name.equals("CareerIntern")) {
+
+            ((CareerIntern_Main) context).processDatePickerResult(year, month, day);
         }
     }
-
 }
+
