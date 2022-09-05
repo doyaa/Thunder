@@ -16,6 +16,10 @@ import java.util.ArrayList;
 public class CareerCertAdapter extends BaseAdapter {
     private ArrayList<CareerCertVO> certItems = new ArrayList<CareerCertVO>();
 
+    public ArrayList<CareerCertVO> getCertItems(){
+        return certItems;
+    }
+
 
     @Override
     public int getCount() {

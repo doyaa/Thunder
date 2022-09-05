@@ -13,6 +13,8 @@ import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.DialogFragment;
 
+import java.util.ArrayList;
+
 public class CareerCert_Main extends AppCompatActivity {
     private ListView careercert_List;
     private CareerCertAdapter careerCertAdapter = new CareerCertAdapter();
@@ -44,6 +46,14 @@ public class CareerCert_Main extends AppCompatActivity {
                 careerCertAdapter.addItems(ser, inst, date);
                 careercert_List.setAdapter(careerCertAdapter);
                 careerCertAdapter.notifyDataSetChanged();
+
+                // 자격증 값 받아오기 
+                ArrayList<CareerCertVO> list = careerCertAdapter.getCertItems();
+                for(int i = 0; i < list.size(); i++){
+                    Log.v("ttttt" , list.get(i).getCertName());
+                    Log.v("ttttt" , list.get(i).getCertInst());
+                    Log.v("ttttt" , list.get(i).getCertDate());
+                }
             }
         });
     }
