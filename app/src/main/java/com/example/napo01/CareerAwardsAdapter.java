@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -47,15 +48,17 @@ public class CareerAwardsAdapter extends BaseAdapter {
         }
 
         CareerAwardsVO vo = awardsItems.get(i);
+        ImageView award_img = view.findViewById(R.id.award_img);
         EditText awardsName = view.findViewById(R.id.internName);
         EditText awardsInst = view.findViewById(R.id.awardsInst);
         EditText awardsDate = view.findViewById(R.id.awardsDate);
+        award_img.setImageDrawable(vo.getAward_img());
        awardsName.setText(vo.getName());
        awardsInst.setText(vo.getInst());
        awardsDate.setText(vo.getDate());
 
         // 갤러리 가져오기
-        ImageView award_img = view.findViewById(R.id.award_img);
+        award_img = view.findViewById(R.id.award_img);
         Button btn_award = view.findViewById(R.id.btn_award);
         btn_award.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -67,8 +70,8 @@ public class CareerAwardsAdapter extends BaseAdapter {
         return view;
     }
 
-        public void addItems(String name, String inst, String date){
-            CareerAwardsVO vo = new CareerAwardsVO(name, inst, date);
+        public void addItems(Drawable img, String name, String inst, String date){
+            CareerAwardsVO vo = new CareerAwardsVO(img, name, inst, date);
             awardsItems.add(vo);
         }
 

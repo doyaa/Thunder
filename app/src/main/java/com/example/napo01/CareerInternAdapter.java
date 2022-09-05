@@ -2,6 +2,7 @@ package com.example.napo01;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.drawable.Drawable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -34,6 +35,7 @@ public class CareerInternAdapter extends BaseAdapter {
 
     @Override
     public View getView(int i, View view, ViewGroup viewGroup) {
+
         context = viewGroup.getContext();
         if(view==null){
             LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
@@ -41,15 +43,17 @@ public class CareerInternAdapter extends BaseAdapter {
         }
 
         CareerInternVO vo = internItems.get(i);
+        ImageView intern_img = view.findViewById(R.id.intern_img);
         EditText internName = view.findViewById(R.id.internName);
         EditText internPer = view.findViewById(R.id.internPer);
         EditText internAct = view.findViewById(R.id.internAct);
+        intern_img.setImageDrawable(vo.getIntern_img());
         internName.setText(vo.getInternName());
         internPer.setText(vo.getInternPer());
         internAct.setText(vo.getInternAct());
 
         // 갤러리 가져오기
-        ImageView intern_img = view.findViewById(R.id.intern_img);
+        intern_img = view.findViewById(R.id.intern_img);
         Button btn_intern = view.findViewById(R.id.btn_intern);
         btn_intern.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -62,8 +66,8 @@ public class CareerInternAdapter extends BaseAdapter {
         return view;
     }
 
-    public void addItems(String name, String per, String act){
-        CareerInternVO vo = new CareerInternVO(name, per, act);
+    public void addItems(Drawable img, String name, String per, String act){
+        CareerInternVO vo = new CareerInternVO(img, name, per, act);
         internItems.add(vo);
     }
 

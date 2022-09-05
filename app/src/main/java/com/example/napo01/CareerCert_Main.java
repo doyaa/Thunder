@@ -1,6 +1,10 @@
 package com.example.napo01;
 
+import android.content.ContentResolver;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -24,6 +28,7 @@ import com.android.volley.toolbox.HttpHeaderParser;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 
+import java.io.InputStream;
 import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -147,18 +152,20 @@ public class CareerCert_Main extends AppCompatActivity {
     }
 
 
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == 1234){
-            if(resultCode == RESULT_OK){
-                String choice = data.getStringExtra("choice");
-                Log.d("확인", choice);
 
-                TextView tv_ser = careercert_List.findViewById(R.id.certName);
-                tv_ser.setText(choice);
-            }
-        }
 
-    }
+//    @Override
+//    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+//        super.onActivityResult(requestCode, resultCode, data);
+//        if (requestCode == 1234){
+//            if(resultCode == RESULT_OK){
+//                String choice = data.getStringExtra("choice");
+//                Log.d("확인", choice);
+//
+//                TextView tv_ser = careercert_List.findViewById(R.id.certName);
+//                tv_ser.setText(choice);
+//            }
+//        }
+//
+//    }
 }

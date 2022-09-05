@@ -1,21 +1,31 @@
 package com.example.napo01;
 
+import android.content.ContentResolver;
+import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.DialogFragment;
+
+import java.io.InputStream;
 
 public class CareerIntern_Main extends AppCompatActivity {
     private ListView internList;
     private CareerInternAdapter careerInternAdapter = new CareerInternAdapter();
     private TextView btn_intern;
+    private ImageView intern_img;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -26,7 +36,7 @@ public class CareerIntern_Main extends AppCompatActivity {
         btn_intern = findViewById(R.id.btn_intern);
 
         internList.setAdapter(careerInternAdapter);
-        careerInternAdapter.addItems("","","");
+        careerInternAdapter.addItems(ContextCompat.getDrawable(getApplicationContext(),R.drawable.clean),"","","");
         careerInternAdapter.notifyDataSetChanged();
 
         btn_intern.setOnClickListener(new View.OnClickListener() {
@@ -37,11 +47,16 @@ public class CareerIntern_Main extends AppCompatActivity {
                 TextView tv_act = internList.findViewById(R.id.internAct);
                 String name = tv_name.getText().toString();
                 String per = tv_per.getText().toString();
-                String act = tv_per.getText().toString();
+                String act = tv_act.getText().toString();
 
 
-                careerInternAdapter.addItems(name,per,act);
+                careerInternAdapter.addItems(ContextCompat.getDrawable(getApplicationContext(),R.drawable.img_5),name,per,act);
+
                 internList.setAdapter(careerInternAdapter);
+
+
+
+
 
             }
         });
@@ -59,5 +74,29 @@ public class CareerIntern_Main extends AppCompatActivity {
 
         EditText awardsDate = findViewById(R.id.internPer);
         awardsDate.setText(dateMessage);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if (requestCode == 101) {
+            if (resultCode == RESULT_OK) {
+                Uri fileUri = data.getData();
+
+                ContentResolver resolver = getContentResolver();  //ContentResolver 객체 참조하기
+
+                try {
+                    InputStream instream = resolver.openInputStream(fileUri);
+                    Bitmap imgBitmap = BitmapFactory.decodeStream(instream);
+                    intern_img = findViewById(R.id.intern_img);
+                    intern_img.setImageBitmap(imgBitmap);
+
+                    instream.close();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        }
     }
 }

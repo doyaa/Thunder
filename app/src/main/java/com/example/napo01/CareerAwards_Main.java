@@ -1,6 +1,7 @@
 package com.example.napo01;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.DialogFragment;
 
 import android.content.ContentResolver;
@@ -39,7 +40,7 @@ public class CareerAwards_Main extends AppCompatActivity {
 
 
         careerAwardsList.setAdapter(careerawardsAdapter);
-        careerawardsAdapter.addItems("", "", "");
+        careerawardsAdapter.addItems(ContextCompat.getDrawable(getApplicationContext(), R.drawable.clean),"", "", "");
 
         careerawardsAdapter.notifyDataSetChanged();
 
@@ -56,7 +57,7 @@ public class CareerAwards_Main extends AppCompatActivity {
                 Log.e("tv_name", tv_name.getText().toString());
                 Log.e("tv_name", tv_name.getText().toString());
 
-                careerawardsAdapter.addItems(name, inst, date);
+                careerawardsAdapter.addItems(ContextCompat.getDrawable(getApplicationContext(),R.drawable.img_5),name, inst, date);
 
                 careerAwardsList.setAdapter(careerawardsAdapter);
 
